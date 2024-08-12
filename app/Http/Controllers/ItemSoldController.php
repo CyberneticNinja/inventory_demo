@@ -10,7 +10,7 @@ class ItemSoldController extends Controller
 {
     public function index()
     {
-        $itemSold = ItemSold::all();
+        $itemSold = ItemSold::paginate(10);
         return view('item_sold.index', compact('itemSold'));
     }
 
@@ -27,9 +27,17 @@ class ItemSoldController extends Controller
             'quantity' => 'required|integer',
             'date' => 'required|date',
         ]);
+    
+        $item = Item::findOrFail($request->item_id);
 
+        $currentQuantity = $item->quantity;    
+
+        if ($currentQuantity - $request->quantity < 1) {
+            return redirect()->back()->withErrors(['quantity' => 'The remaining item quantity cannot be less than 1.']);
+        }
+    
         ItemSold::create($request->all());
-
+    
         return redirect()->route('item_sold.index')
                         ->with('success', 'Item Sold recorded successfully.');
     }

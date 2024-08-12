@@ -10,7 +10,7 @@ class ItemAddedController extends Controller
 {
     public function index()
     {
-        $itemAdded = ItemAdded::with('item')->get(); // Fetch item added records with related items
+        $itemAdded = ItemAdded::paginate(10);
         return view('item_added.index', compact('itemAdded'));
     }
 
@@ -22,7 +22,7 @@ class ItemAddedController extends Controller
 
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
+        $request->validate([
             'item_id' => 'required|exists:items,id',
             'quantity' => 'required|integer',
             'date' => 'required|date',

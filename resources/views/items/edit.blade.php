@@ -1,6 +1,6 @@
 @extends('templates.homepage')
 
-@section('title', 'Items List')
+@section('title', 'Edit Item')
 
 @section('content')
     <h2>Edit Item</h2>
@@ -15,10 +15,6 @@
         <div class="form-group">
             <label for="name">Name</label>
             <input type="text" name="name" class="form-control" value="{{ $item->name }}" required>
-        </div>
-        <div class="form-group">
-            <label for="quantity">Quantity</label>
-            <input type="number" name="quantity" class="form-control" value="{{ $item->quantity }}" required>
         </div>
         <div class="form-group">
             <label for="price">Price</label>

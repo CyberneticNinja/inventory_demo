@@ -9,7 +9,7 @@ class itemController extends Controller
 {
     public function index()
     {
-        $items = Item::all();
+        $items = Item::paginate(10);
         return view('items.index', compact('items'));
     }
 
@@ -46,16 +46,15 @@ class itemController extends Controller
     public function update(Request $request, Item $item)
     {
         $request->validate([
-            'barcode' => 'required|unique:items,barcode,'.$item->id,
+            'barcode' => 'required|unique:items,barcode,' . $item->id,
             'name' => 'required',
-            'quantity' => 'required|integer',
             'price' => 'required|numeric',
         ]);
-
-        $item->update($request->all());
-
+    
+        $item->update($request->except('quantity')); 
+    
         return redirect()->route('items.index')
-                        ->with('success','Item updated successfully.');
+                         ->with('success', 'Item updated successfully.');
     }
 
     public function destroy(Item $item)

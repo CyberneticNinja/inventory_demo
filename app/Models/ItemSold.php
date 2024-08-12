@@ -12,11 +12,11 @@ class ItemSold extends Model
 
     protected $table = 'item_sold'; 
 
-    protected $fillable = ['item_barcode', 'quantity', 'date'];
+    protected $fillable = ['item_id', 'quantity', 'date'];
     public $timestamps = false;
 
     public function item()
     {
-        return $this->belongsTo(Item::class, 'item_barcode', 'barcode');
+        return $this->belongsTo(Item::class, 'item_id', 'id');
     }
 }
