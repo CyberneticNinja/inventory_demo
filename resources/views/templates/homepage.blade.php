@@ -15,18 +15,23 @@
         </div>
         <div class="flex-none">
             <ul class="menu menu-horizontal px-1">
-            <li><a href="{{ route('home') }}">Home</a> </li>
-                <li><a href="#">Login</a></li>
-                 <li><a href="{{ route('items.index') }}">Items</a></li> 
-                 <li><a href="{{ route('item_sold.index') }}">Items Sold</a></li>
+                <li><a href="{{ route('home') }}">Home</a></li>
+                <li><a href="{{ route('items.index') }}">Items</a></li>
+                <li><a href="{{ route('item_sold.index') }}">Items Sold</a></li>
                 <li><a href="{{ route('item_added.index') }}">Add Items</a></li>
                 <li><a href="#">Reports</a></li>
 
-                {{-- <li><a href="{{ route('login') }}">Login</a></li>
-                <li><a href="{{ route('items.index') }}">Items</a></li>
-                <li><a href="{{ route('items.create') }}">Add Items</a></li>
-                <li><a href="{{ route('items-sold.index') }}">Items Sold</a></li>
-                <li><a href="{{ route('reports.index') }}">Reports</a></li> --}}
+                <!-- Show login if not authenticated, else show logout -->
+                @guest
+                    <li><a href="{{ route('login') }}">Login</a></li>
+                @else
+                    <li>
+                        <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="btn btn-danger">Logout</a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                    </li>
+                @endguest
             </ul>
         </div>
     </div>
@@ -44,17 +49,12 @@
         <div>
             <span class="footer-title">Quick Links</span> 
             <a href="{{ route('home') }}">Home</a> 
-            {{-- <a href="{{ route('login') }}">Login</a>  --}}
-            {{-- <a href="{{ route('items.index') }}">Items</a>  --}}
-            <a href="{{ route('item_added.index') }}">Add Items</a>           
-            {{-- <a href="{{ route('items-sold.index') }}">Items Sold</a>  --}}
-            {{-- <a href="{{ route('reports.index') }}">Reports</a> --}}
-            <a href="#">Login</a> 
+            @guest
+                <a href="{{ route('login') }}">Login</a>
+            @endguest
+            <a href="{{ route('item_added.index') }}">Add Items</a>
             <a href="{{ route('items.index') }}">Items</a>
-            <a href="{{ route('item_sold.index') }}">Items Sold</a> 
-
-            <a href="#">Add Items</a> 
-            <a href="#">Items Sold</a> 
+            <a href="{{ route('item_sold.index') }}">Items Sold</a>
             <a href="#">Reports</a>
         </div> 
         <div>
