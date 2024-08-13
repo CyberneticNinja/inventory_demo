@@ -4,6 +4,7 @@
 
 @section('content')
     <h1 class="text-3xl font-bold">Items List</h1>
+    <a href="{{ route('items.create') }}" class="btn btn-primary mb-4">Add New Item</a>
         <table class="table table-striped mt-4">
         <thead>
             <tr>
@@ -22,6 +23,7 @@
                     <td>{{ $item->quantity }}</td>
                     <td>{{ $item->price }}</td>
                     <td>
+                        <a href="{{ route('items.show', $item->id) }}" class="btn btn-warning">View</a>
                         <a href="{{ route('items.edit', $item->id) }}" class="btn btn-warning">Edit</a>
                             <form action="{{ route('items.destroy', $item) }}" method="POST" class="inline">
                                 @csrf
