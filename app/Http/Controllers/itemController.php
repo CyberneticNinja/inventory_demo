@@ -23,7 +23,7 @@ class itemController extends Controller
         $request->validate([
             'barcode' => 'required|unique:items',
             'name' => 'required',
-            'quantity' => 'required|integer',
+            // 'quantity' => 'required|integer',
             'price' => 'required|numeric',
         ]);
 
