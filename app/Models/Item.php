@@ -13,10 +13,8 @@ class Item extends Model
 
     protected $table = 'items'; 
     protected $primaryKey = 'id';
-    public $incrementing = false;
-    protected $keyType = 'string';
 
-    protected $fillable = ['barcode', 'name', 'initial_stock'];
+    protected $fillable = ['barcode', 'name', 'price'];
     public $timestamps = false;
 
     // public function itemsAdded()

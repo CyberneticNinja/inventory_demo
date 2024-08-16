@@ -5,6 +5,7 @@ use App\Http\Controllers\ItemController;
 use App\Http\Controllers\ItemSoldController;
 use App\Http\Controllers\ItemAddedController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\AnalyticsController;
 
 // Authentication routes
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
@@ -19,4 +20,5 @@ Route::middleware('auth')->group(function () {
     Route::resource('items', ItemController::class);
     Route::resource('item_sold', ItemSoldController::class);
     Route::resource('item_added', ItemAddedController::class);
+    Route::get('/analytics', [AnalyticsController::class, 'index'])->name('analytics.index');
 });

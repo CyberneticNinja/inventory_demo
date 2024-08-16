@@ -19,6 +19,7 @@
                 <li><a href="{{ route('items.index') }}">Items</a></li>
                 <li><a href="{{ route('item_sold.index') }}">Items Sold</a></li>
                 <li><a href="{{ route('item_added.index') }}">Add Items</a></li>
+                <li><a href="{{ route('analytics.index')}}">Analytics</a></li>
                 <li><a href="#">Reports</a></li>
 
                 <!-- Show login if not authenticated, else show logout -->
@@ -55,6 +56,7 @@
             <a href="{{ route('item_added.index') }}">Add Items</a>
             <a href="{{ route('items.index') }}">Items</a>
             <a href="{{ route('item_sold.index') }}">Items Sold</a>
+            <a href="{{ route('analytics.index')}}">Analytics</a>
             <a href="#">Reports</a>
         </div> 
         <div>

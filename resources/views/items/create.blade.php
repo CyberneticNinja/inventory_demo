@@ -28,10 +28,10 @@
                 <input type="text" name="barcode" id="barcode" class="input input-bordered w-full mt-1" required>
             </div>
 
-            <div class="mb-4">
+            {{-- <div class="mb-4">
                 <label for="quantity" class="block text-sm font-medium text-gray-700">Quantity</label>
                 <input type="number" name="quantity" id="quantity" class="input input-bordered w-full mt-1" required>
-            </div>
+            </div> --}}
 
             <div class="mb-4">
                 <label for="price" class="block text-sm font-medium text-gray-700">Price</label>
