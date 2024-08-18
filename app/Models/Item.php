@@ -14,7 +14,7 @@ class Item extends Model
     protected $table = 'items'; 
     protected $primaryKey = 'id';
 
-    protected $fillable = ['barcode', 'name', 'price'];
+    protected $fillable = ['barcode', 'name', 'price','quantity'];
     public $timestamps = false;
 
     // public function itemsAdded()

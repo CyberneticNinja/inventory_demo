@@ -18,9 +18,13 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@somecorp.com',
         ]);
 
-        $this->call(ItemSeeder::class);
+        // $this->call(ItemSeeder::class);
+        // $this->call(ItemAddedSeeder::class);
+        // $this->call(ItemSoldSeeder::class);
 
-        $this->call(ItemAddedSeeder::class);
-        $this->call(ItemSoldSeeder::class);
+        $this->call(ItemSeederVaried::class);
+        $this->call(ItemAddedSeederVaried::class);
+        $this->call(ItemSoldSeederVaried::class);
+        $this->call(ItemQuantitySeederVaried::class);
     }
 }

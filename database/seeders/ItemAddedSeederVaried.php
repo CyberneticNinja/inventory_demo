@@ -14,16 +14,23 @@ class ItemAddedSeederVaried extends Seeder
     public function run(): void
     {
         $items = Item::all();
-        $startDate = now()->setDate(2019, 1, 1)->startOfMonth(); // Set to January 1st, 2019
+        $startDate = now()->setDate(2019, 1, 1)->startOfMonth();
+        $endDate = now();
 
         foreach ($items as $item) {
-            for ($month = 0; $month < 8; $month++) {
+            $date = $startDate->copy();
+
+            while ($date->lte($endDate)) {  // Loop until date exceeds the current date
                 ItemAdded::create([
                     'item_id' => $item->id,
                     'quantity' => rand(50, 100),
-                    'date' => $startDate->copy()->addMonths($month)->toDateString(),
+                    'date' => $date->toDateString(),
                 ]);
+
+                // Increment by 1 month
+                $date->addMonth();
             }
         }
     }
 }
+
