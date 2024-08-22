@@ -16,7 +16,7 @@
                     <label for="email" class="label">
                         <span class="label-text">Email</span>
                     </label>
-                    <input id="email" type="email" name="email" value="{{ old('email') }}" required autofocus class="input input-bordered w-full">
+                    <input id="email" type="email" name="email" value="{{ old('email', 'admin@somecorp.com') }}" required autofocus class="input input-bordered w-full">
                     @error('email')
                         <label class="label">
                             <span class="label-text text-red-500">{{ $message }}</span>
@@ -28,7 +28,7 @@
                     <label for="password" class="label">
                         <span class="label-text">Password</span>
                     </label>
-                    <input id="password" type="password" name="password" required class="input input-bordered w-full">
+                    <input id="password" type="password" name="password" value="password" required class="input input-bordered w-full">
                     @error('password')
                         <label class="label">
                             <span class="label-text text-red-500">{{ $message }}</span>
