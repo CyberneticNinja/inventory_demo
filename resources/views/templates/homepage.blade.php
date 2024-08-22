@@ -20,7 +20,7 @@
                 <li><a href="{{ route('item_sold.index') }}">Items Sold</a></li>
                 <li><a href="{{ route('item_added.index') }}">Add Items</a></li>
                 <li><a href="{{ route('analytics.index')}}">Analytics</a></li>
-                <li><a href="#">Reports</a></li>
+                <li><a href="{{ route('reports') }}">Reports</a></li>
 
                 <!-- Show login if not authenticated, else show logout -->
                 @guest
@@ -53,11 +53,12 @@
             @guest
                 <a href="{{ route('login') }}">Login</a>
             @endguest
-            <a href="{{ route('item_added.index') }}">Add Items</a>
-            <a href="{{ route('items.index') }}">Items</a>
-            <a href="{{ route('item_sold.index') }}">Items Sold</a>
-            <a href="{{ route('analytics.index')}}">Analytics</a>
-            <a href="#">Reports</a>
+                <a href="{{ route('home') }}">Home</a>
+                <a href="{{ route('items.index') }}">Items</a>
+                <a href="{{ route('item_sold.index') }}">Items Sold</a>
+                <a href="{{ route('item_added.index') }}">Add Items</a>
+                <a href="{{ route('analytics.index')}}">Analytics</a>
+                <a href="{{ route('reports') }}">Reports</a>
         </div> 
         <div>
             <span class="footer-title">Contact Us</span> 
