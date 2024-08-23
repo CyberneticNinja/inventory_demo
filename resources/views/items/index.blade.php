@@ -11,7 +11,8 @@
                 <th>Barcode</th>
                 <th>Name</th>
                 <th>Quantity</th>
-                <th>Price</th>
+                <th>Price (Bought)</th>
+                <th>Price (Selling)</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -22,6 +23,7 @@
                     <td>{{ $item->name }}</td>
                     <td>{{ $item->quantity }}</td>
                     <td>{{ $item->price }}</td>
+                    <td>{{ $item->selling_price }}</td>
                     <td>
                         <a href="{{ route('items.show', $item->id) }}" class="btn btn-warning">View</a>
                         <a href="{{ route('items.edit', $item->id) }}" class="btn btn-warning">Edit</a>

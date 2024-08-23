@@ -22,10 +22,13 @@
             </div>
 
             <div class="mb-4">
-                <h2 class="text-xl font-semibold">Price:</h2>
+                <h2 class="text-xl font-semibold">(Bought)Price:</h2>
                 <p>{{ $item->price }}</p>
             </div>
-
+            <div class="mb-4">
+                <h2 class="text-xl font-semibold">(Selling)Price:</h2>
+                <p>{{ $item->selling_price }}</p>
+            </div>
             <div class="mt-6">
                 <a href="{{ route('items.index') }}" class="btn btn-secondary">Back to List</a>
                 <a href="{{ route('items.edit', $item->id) }}" class="btn btn-primary">Edit</a>

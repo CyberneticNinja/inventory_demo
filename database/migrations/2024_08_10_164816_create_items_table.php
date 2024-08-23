@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('name');
             $table->integer('quantity')->default(0);
             $table->decimal('price', 8, 2);
+            $table->decimal('selling_price', 8, 2);
             $table->string('description')->nullable();
             $table->softDeletes(); 
         });

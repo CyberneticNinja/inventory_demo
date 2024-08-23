@@ -34,10 +34,13 @@
             </div> --}}
 
             <div class="mb-4">
-                <label for="price" class="block text-sm font-medium text-gray-700">Price</label>
+                <label for="price" class="block text-sm font-medium text-gray-700">Price (Bought)</label>
                 <input type="text" name="price" id="price" class="input input-bordered w-full mt-1" required>
             </div>
-
+            <div class="mb-4">
+                <label for="selling_price" class="block text-sm font-medium text-gray-700">Price (Selling)</label>
+                <input type="text" name="selling_price" id="selling_price" class="input input-bordered w-full mt-1" required>
+            </div>
             <div class="mt-6">
                 <button type="submit" class="btn btn-primary">Add Item</button>
                 <a href="{{ route('items.index') }}" class="btn btn-secondary">Cancel</a>
