@@ -7,6 +7,7 @@ use App\Http\Controllers\ItemAddedController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\AnalyticsController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\SearchController;
 
 // Authentication routes
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
@@ -24,4 +25,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/analytics', [AnalyticsController::class, 'index'])->name('analytics.index');
     Route::get('/reports', [ReportController::class,'index'])->name('reports');
     Route::post('/reports', [ReportController::class,'download'])->name('reports.download');
+    Route::get('/search', [SearchController::class, 'showSearchForm'])->name('search.form');
+    Route::get('/search/result', [SearchController::class, 'searchResults'])->name('search.results');    
 });

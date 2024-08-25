@@ -30,34 +30,33 @@
         .top-items, .profit-data {
             margin-top: 20px;
             text-align: left;
-                width: 80%;
-            }
-            .top-items h2, .profit-data h2 {
-                font-size: 1.5rem;
-                margin-bottom: 10px;
-            }
-            .top-items ul, .profit-data ul {
-                list-style-type: decimal;
-                padding-left: 20px;
-            }
-            .top-items li, .profit-data li {
-                margin-bottom: 5px;
-            }
-        </style>
-    </head>
-    <body>
-        <!-- Page 1: Header and Introduction -->
-        <div class="page">
-            <h1>Sales Data Report for {{ $year }}</h1>
-            <p>This report provides an overview of the sales data for the year {{ $year }}.</p>
-            <!-- Additional content can go here -->
-        </div>
+            width: 80%;
+        }
+        .top-items h2, .profit-data h2 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+        .top-items ul, .profit-data ul {
+            list-style-type: decimal;
+            padding-left: 20px;
+        }
+        .top-items li, .profit-data li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Page 1: Header and Introduction -->
+    <div class="page">
+        <h1>Sales Data Report for {{ $year }}</h1>
+        <p>This report provides an overview of the sales data for the year {{ $year }}.</p>
+    </div>
 
-        <!-- Page 2: Sales Chart and Top Selling Items -->
-        <div class="page">
-            <h1>Monthly Sales Trend</h1>
-            <canvas id="salesChart"></canvas>
-        </div>
+    <!-- Page 2: Sales Chart -->
+    <div class="page">
+        <h1>Monthly Sales Trend</h1>
+        <canvas id="salesChart"></canvas>
+    </div>
 
     <!-- Page 3: Top Selling Items by Month (First 6 Months) -->
     <div class="page">
@@ -94,6 +93,7 @@
             </ul>
         </div>
     </div>
+    
     <!-- Page 5: Profit Data -->
     <div class="page">
         <div class="profit-data">
@@ -106,9 +106,15 @@
         </div>
     </div>
 
+    <!-- Page 6: Percentage of Items Sold vs Added -->
+    <div class="page">
+        <h1>Percentage of Items Sold vs Added</h1>
+        <canvas id="percentageChart"></canvas>
+    </div>
+
     <script>
-        const ctx = document.getElementById('salesChart').getContext('2d');
-        const salesChart = new Chart(ctx, {
+        const salesCtx = document.getElementById('salesChart').getContext('2d');
+        const salesChart = new Chart(salesCtx, {
             type: 'line',
             data: {
                 labels: @json($salesData->pluck('month')->map(function($month) {
@@ -126,6 +132,38 @@
                 scales: {
                     y: {
                         beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        const percentageCtx = document.getElementById('percentageChart').getContext('2d');
+        const percentageChart = new Chart(percentageCtx, {
+            type: 'bar',
+            data: {
+                labels: @json($percentageData->pluck('item_name')),
+                datasets: [
+                    {
+                        label: 'Percentage of Items Sold',
+                        data: @json($percentageData->pluck('percentage_sold')),
+                        backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Items Added',
+                        data: @json($percentageData->pluck('total_added')),
+                        backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }
+                ]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100
                     }
                 }
             }

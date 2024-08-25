@@ -20,7 +20,7 @@ class ItemSoldSeederVaried extends Seeder
             for ($month = 0; $month < 8; $month++) {
                 ItemSold::create([
                     'item_id' => $item->id,
-                    'quantity' => rand(20, 50),
+                    'quantity' => rand(50, 80),
                     'date' => $startDate->copy()->addMonths($month)->toDateString(),
                 ]);
             }
