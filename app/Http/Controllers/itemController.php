@@ -59,9 +59,14 @@ class itemController extends Controller
 
     public function destroy(Item $item)
     {
-        $item->delete();
+    // Delete associated item_sold and item_added records
+    $item->itemSold()->delete();
+    $item->itemAdded()->delete();
 
-        return redirect()->route('items.index')
-                        ->with('success','Item deleted successfully.');
+    // Delete the item itself
+    $item->delete();
+
+    return redirect()->route('items.index')
+                    ->with('success','Item deleted successfully.');
     }
 }

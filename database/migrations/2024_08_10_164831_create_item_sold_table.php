@@ -14,9 +14,8 @@ return new class extends Migration
         Schema::create('item_sold', function (Blueprint $table) {
             $table->id();
             $table->integer('quantity');
-            $table->foreignId('item_id')->constrained('items')->onDelete('cascade');
+            $table->foreignId('item_id')->constrained('items');
             $table->date('date'); 
-            $table->softDeletes(); 
         });
     }
 
