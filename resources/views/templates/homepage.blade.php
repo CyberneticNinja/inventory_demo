@@ -21,6 +21,7 @@
                 <li><a href="{{ route('item_added.index') }}">Add Items</a></li>
                 <li><a href="{{ route('analytics.index')}}">Analytics</a></li>
                 <li><a href="{{ route('reports') }}">Reports</a></li>
+                <li><a href="{{ route('search.form') }}">Search</a></li>
 
                 <!-- Show login if not authenticated, else show logout -->
                 @guest
@@ -59,6 +60,7 @@
                 <a href="{{ route('item_added.index') }}">Add Items</a>
                 <a href="{{ route('analytics.index')}}">Analytics</a>
                 <a href="{{ route('reports') }}">Reports</a>
+                <a href="{{ route('search.form') }}">Search</a>
         </div> 
         <div>
             <span class="footer-title">Contact Us</span> 
