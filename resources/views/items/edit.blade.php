@@ -17,8 +17,12 @@
             <input type="text" name="name" class="form-control" value="{{ $item->name }}" required>
         </div>
         <div class="form-group">
-            <label for="price">Price</label>
+            <label for="price">Price (Bought)</label>
             <input type="text" name="price" class="form-control" value="{{ $item->price }}" required>
+        </div>
+        <div class="form-group">
+            <label for="price">Price (Selling)</label>
+            <input type="text" name="price" class="form-control" value="{{ $item->selling_price }}" required>
         </div>
         <div class="form-group">
             <label for="description">Description</label>

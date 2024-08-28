@@ -1,5 +1,3 @@
-// resources/views/errors/419.blade.php
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +6,7 @@
     <title>Page Expired</title>
     <style>
         body {
-            background-color: #181915;
+            background-color: #171b17;
             margin: 0;
             padding: 0;
             display: flex;
@@ -23,6 +21,6 @@
     </style>
 </head>
 <body>
-    <img src="{{ asset('419.png') }}" alt="Page Expired">
+    <img src="{{ asset('images/419.png') }}" alt="Page Expired">
 </body>
 </html>
