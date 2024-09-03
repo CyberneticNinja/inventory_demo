@@ -18,7 +18,7 @@
                 <li><a href="{{ route('home') }}">Home</a></li>
                 <li><a href="{{ route('items.index') }}">Items</a></li>
                 <li><a href="{{ route('item_sold.index') }}">Items Sold</a></li>
-                <li><a href="{{ route('item_added.index') }}">Add Items</a></li>
+                <li><a href="{{ route('item_added.index') }}">Items Added</a></li>
                 <li><a href="{{ route('analytics.index')}}">Analytics</a></li>
                 <li><a href="{{ route('reports') }}">Reports</a></li>
                 <li><a href="{{ route('search.form') }}">Search</a></li>
@@ -54,10 +54,9 @@
             @guest
                 <a href="{{ route('login') }}">Login</a>
             @endguest
-                <a href="{{ route('home') }}">Home</a>
                 <a href="{{ route('items.index') }}">Items</a>
                 <a href="{{ route('item_sold.index') }}">Items Sold</a>
-                <a href="{{ route('item_added.index') }}">Add Items</a>
+                <a href="{{ route('item_added.index') }}">items Added</a>
                 <a href="{{ route('analytics.index')}}">Analytics</a>
                 <a href="{{ route('reports') }}">Reports</a>
                 <a href="{{ route('search.form') }}">Search</a>
