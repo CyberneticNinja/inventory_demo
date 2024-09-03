@@ -6,10 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\ItemAdded;
 use App\Models\ItemSold;
 use Spatie\Browsershot\Browsershot;
-use Spatie\LaravelPdf\Facades\Pdf;
-use Spatie\LaravelPdf\Support;
 use Illuminate\Support\Facades\DB;
-use App\Models\Item;
 
 class ReportController extends Controller
 {
@@ -52,10 +49,10 @@ class ReportController extends Controller
                 (SUM(item_added.quantity * items.price) - SUM(item_sold.quantity * items.selling_price)) as profit
             '))
             ->whereYear('item_added.date', $year)
-            ->groupBy('items.id')
-            ->havingRaw('profit > 0')
-            ->orderByDesc('profit')
-            ->get();
+        ->groupBy('items.id', 'items.name')  // Group by both item id and name
+        ->havingRaw('profit > 0')
+        ->orderByDesc('profit')
+        ->get();    
 
         // Percentage of Items Sold vs Items Added
         $percentageData = DB::table('items')
@@ -68,20 +65,21 @@ class ReportController extends Controller
             SUM(item_added.quantity) as total_added
         '))
         ->whereYear('item_added.date', $year)
-        ->groupBy('items.id')
+        ->groupBy('items.id', 'items.name')  // Add items.name to the GROUP BY clause
         ->orderByDesc('percentage_sold')
         ->get();    
 
         // Render the view and save it as HTML
         $template = view('pdf.download.sales', compact('year', 'salesData', 'topItemsByMonth','profitData','percentageData'))->render();
 
-        $pdfPath = storage_path('app/temp/Report' . $year . '.pdf');
-
-        Pdf::html($template)->withBrowsershot(function (Browsershot $browsershot) {
-            $browsershot->setIncludePath(env('BROWSER_PATH'));
-            $browsershot->waitUntilNetworkIdle()->setDelay(1000);
-         })->save($pdfPath);
-        // })->save('/Users/abrokwahs/Sites/inventory_demo/public/Report'.$year.'.pdf');
+        $pdfPath = storage_path('app/public/report' . $year . '.pdf');
+        Browsershot::html($template)
+        // ->setChromePath(env('CHROME_PATH'))
+        ->waitUntilNetworkIdle()
+        ->setNodeBinary(env('NODE_BINARY'))
+        ->setNpmBinary(env('NPM_BINARY'))        
+        ->setDelay(10000) 
+        ->save($pdfPath);
 
         return response()->download($pdfPath)->deleteFileAfterSend(true);
     }
