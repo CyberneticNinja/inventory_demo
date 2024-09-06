@@ -74,7 +74,7 @@ class ReportController extends Controller
 
         $pdfPath = storage_path('app/public/report' . $year . '.pdf');
         Browsershot::html($template)
-        // ->setChromePath(env('CHROME_PATH'))
+        ->setChromePath(env('CHROME_PATH'))
         ->waitUntilNetworkIdle()
         ->setNodeBinary(env('NODE_BINARY'))
         ->setNpmBinary(env('NPM_BINARY'))        
