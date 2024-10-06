@@ -51,7 +51,7 @@ class ItemAddedController extends Controller
 
     public function update(Request $request, ItemAdded $itemAdded)
     {
-        dd('we are here');
+
         $request->validate([
             'item_id' => 'required|exists:items,id',
             'quantity' => 'required|integer',
